@@ -92,7 +92,7 @@ that it shows exactly the page's visible text, no raw HTML and only the page's
 links. `HTMLMARK_DOCUMENTS` and `HTMLMARK_SEED` run it further:
 
 ```sh
-HTMLMARK_DOCUMENTS=50000 HTMLMARK_SEED=7 cargo test --release -p htmlmark --test commonmark
+HTMLMARK_DOCUMENTS=50000 HTMLMARK_SEED=7 cargo test --release --test commonmark
 ```
 
 Two [cargo-fuzz](https://github.com/rust-fuzz/cargo-fuzz) targets in `fuzz/`
@@ -102,14 +102,13 @@ and checks that nothing panics and the output stays within its limit;
 coverage instead of a generator:
 
 ```sh
-cd crates/htmlmark
 cargo +nightly fuzz run read_back -- -dict=fuzz/html.dict -max_len=4096
 ```
 
 ## Status
 
-`htmlmark` is developed inside
+`htmlmark` started inside
 [roomkit-tools](https://github.com/roomkit-live/roomkit-tools), where it
-converts pages for the `web_fetch` tool, and is not published on crates.io
-yet. Its API may change before a first release. Minimum supported Rust version:
-1.94. License: MIT.
+converts pages for the `web_fetch` tool. Its API may change before 1.0.
+Minimum supported Rust version: 1.94. License: MIT. See
+[SECURITY.md](https://github.com/sboily/htmlmark/blob/main/SECURITY.md) to report a vulnerability.
